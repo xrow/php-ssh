@@ -29,4 +29,12 @@ class Exec extends Subsystem
         }
         return stream_get_contents($stdout);
     }
+    public function receive( $remote_file, $local_file )
+    {
+        return ssh2_scp_recv($this->getResource(), $remote_file, $local_file );
+    }
+    public function send( $local_file, $remote_file, $create_mode = 0644 )
+    {
+        return ssh2_scp_send($this->getResource(), $local_file, $remote_file, $create_mode );
+    }
 }
